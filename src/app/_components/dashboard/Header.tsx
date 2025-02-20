@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Bell, ChevronRight, ChevronLeft } from "lucide-react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 // import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
@@ -198,7 +198,8 @@ export function DashboardHeader() {
               size="icon"
               className="relative rounded-full"
             >
-              <Bell className="h-5 w-5" />
+              <Image src="/bell-01.svg" alt="bell" width={20} height={20} />
+
               <Badge className="absolute -right-[-3] -top-[-2] flex h-4 w-4 items-center justify-center rounded-full bg-red-500 p-0 text-[10px] hover:bg-red-500">
                 3
               </Badge>
