@@ -196,7 +196,7 @@ export function DashboardHeader() {
             <Button
               variant="ghost"
               size="icon"
-              className="relative rounded-full"
+              className="relative rounded-full h-10 w-10"
             >
               <Image src="/bell-01.svg" alt="bell" width={20} height={20} />
 
