@@ -8,18 +8,16 @@ import {
   DialogDescription,
   DialogFooter,
   DialogTrigger,
-  DialogClose,
+//   DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Plus, X } from "lucide-react";
+import { Plus } from "lucide-react";
 import Image from "next/image";
 
-interface AddFeeModalProps {
-  onClose: () => void;
-}
+
 
 export const AddFeeModal: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);

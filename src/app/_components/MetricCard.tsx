@@ -21,7 +21,7 @@ export function MetricCard({
   title,
   value,
   icon,
-  iconBgColor,
+  // iconBgColor,
   trend,
   attention,
 }: MetricCardProps) {

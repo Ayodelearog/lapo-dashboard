@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Calendar, CalendarIcon } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import {
   Popover,
   PopoverContent,

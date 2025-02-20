@@ -20,13 +20,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus } from "lucide-react";
+
 import { useRouter } from "next/navigation";
 import { AddFeeModal } from "./AddFeeModal";
 
 export const CardProfileForm: React.FC = () => {
   const router = useRouter();
-  const [fees, setFees] = React.useState<any[]>([]);
+  const [fees] = React.useState<string[]>([]);
 
   return (
     <div className="w-full">

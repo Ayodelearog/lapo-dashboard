@@ -14,12 +14,11 @@ import {
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+  // CardDescription,
+  // CardHeader,
+  // CardTitle,
 } from "@/components/ui/card";
-import { Plus, Trash2, PenSquare } from "lucide-react";
-import { CardProfileForm } from "../_components/CardProfileForm";
+import { Plus } from "lucide-react";
 import { AddFeeModal } from "../_components/AddFeeModal";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -35,8 +34,8 @@ interface CardProfileData {
 
 export const CardProfilePage: React.FC = () => {
   const router = useRouter();
-  const [isAddFeeModalOpen, setIsAddFeeModalOpen] = React.useState(false);
-  const [cardProfiles, setCardProfiles] = React.useState<CardProfileData[]>([
+  const [isAddFeeModalOpen] = React.useState(false);
+  const [cardProfiles] = React.useState<CardProfileData[]>([
     {
       id: "1",
       name: "Verve-1",
@@ -132,7 +131,7 @@ export const CardProfilePage: React.FC = () => {
       </Card>
 
       {isAddFeeModalOpen && (
-        <AddFeeModal onClose={() => setIsAddFeeModalOpen(false)} />
+        <AddFeeModal  />
       )}
     </div>
   );

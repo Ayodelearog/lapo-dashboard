@@ -5,9 +5,9 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Bell, Search, ChevronRight, ChevronLeft } from "lucide-react";
+import { Bell, ChevronRight, ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 

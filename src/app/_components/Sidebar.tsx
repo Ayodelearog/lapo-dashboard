@@ -3,19 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import {
-  LayoutDashboard,
-  Building2,
-  Users,
-  CreditCard,
-  FileText,
-  Box,
-  List,
-  History,
-  LogOut,
-} from "lucide-react";
 import Image from "next/image";
-import { Icon } from "./Icon";
+// import { Icon } from "./Icon";
 
 const menuItems = [
   // { name: "Dashboard", icon: "/home.svg", href: "/" },

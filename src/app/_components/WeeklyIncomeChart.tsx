@@ -26,7 +26,7 @@ export function WeeklyIncomeChart() {
   return (
     <Card className='shadow-none p-4 flex flex-col gap-[22px]'>
       <CardHeader className="flex p-0 flex-row items-center justify-between ">
-        <CardTitle className="text-lg font-medium text-[#121212]">This Week's Income</CardTitle>
+        <CardTitle className="text-lg font-medium text-[#121212]">This Week&apos;s Income</CardTitle>
       </CardHeader>
       <CardContent className='p-0 '>
         <div className="h-[203px] w-full">
