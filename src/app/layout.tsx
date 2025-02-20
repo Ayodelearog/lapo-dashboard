@@ -4,6 +4,10 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "@/trpc/react";
+import type React from "react"
+import "@/styles/globals.css"
+import { Sidebar } from "@/app/_components/Sidebar"
+import { DashboardHeader } from "@/app/_components/dashboard/Header"
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -15,10 +19,22 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+    <html lang="en" >
+      <body className="font-satoshi h-screen overflow-hidden">
+        <div className="flex h-screen overflow-hidden">
+          <Sidebar />
+          <TRPCReactProvider>
+            <div className="flex-1 flex flex-col h-full overflow-hidden">
+              <DashboardHeader />
+              <main className="flex-1 overflow-y-auto px-[20px] py-[8px] bg-blue-50">{children}</main>
+            </div>
+          </TRPCReactProvider>
+        </div>
       </body>
     </html>
   );
 }
+
+
+
+

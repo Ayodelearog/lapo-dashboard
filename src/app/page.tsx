@@ -1,53 +1,133 @@
-import Link from "next/link";
+// app/page.tsx
+"use client";
 
-import { LatestPost } from "@/app/_components/post";
-import { api, HydrateClient } from "@/trpc/server";
+import React from "react";
+import { DateDisplay } from "./_components/DateDisplay";
+import { QuickAccessCard } from "./_components/QuickAccessCard";
+import { MetricCard } from "./_components/MetricCard";
+import { MonthlyIssuanceChart } from "./_components/MonthlyIssuanceChart";
+import { RecentCardRequests } from "./_components/RecentCardRequests";
+import { WeeklyIncomeChart } from "./_components/WeeklyIncomeChart";
+import { CardStatusDistribution } from "./_components/CardStatusDistribution";
 
-export default async function Home() {
-  const hello = await api.post.hello({ text: "from tRPC" });
-
-  void api.post.getLatest.prefetch();
+export default function DashboardPage() {
+  // Quick access items
+  const quickAccessItems = [
+    {
+      title: "Manage a Card",
+      icon: "credit-card-shield",
+      href: "/cards/manage",
+    },
+    {
+      title: "Issue Instant Card",
+      icon: "credit-card-02",
+      href: "/cards/issue-instant",
+    },
+    {
+      title: "Issue Personalized Card",
+      icon: "credit-card-edit",
+      href: "/cards/issue-personalized",
+    },
+    {
+      title: "Review Card Requests",
+      icon: "credit-card-plus",
+      href: "/cards/requests",
+    },
+  ];
 
   return (
-    <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-          </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
-            </Link>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello ? hello.greeting : "Loading tRPC query..."}
-            </p>
-          </div>
-
-          <LatestPost />
+    <div className=" ">
+      {/* Welcome section */}
+      <div className="mb-4 flex items-center justify-between">
+        <div>
+          <h2 className="text-[18px] font-bold leading-6 text-[#121212]">
+            Hi Nazeer, what would you like to do today?
+          </h2>
+          <p className="font-regular text-[12px] text-[#121212]">
+            {" "}
+            <span className="font-medium">Last login:</span> 26/11/2024 14:39:58
+          </p>
         </div>
-      </main>
-    </HydrateClient>
+        <DateDisplay />
+      </div>
+
+      {/* Quick access cards */}
+      <section className="mb-3 rounded-[10px] border border-[#E2E2E2] bg-white p-4">
+        <h3 className="mb-4 text-base font-medium leading-[18px] text-[#121212]">
+          Your Quick Access
+        </h3>
+        <div className="grid grid-cols-4 gap-2">
+          {quickAccessItems.map((item, index) => (
+            <QuickAccessCard
+              key={index}
+              title={item.title}
+              icon={item.icon}
+              href={item.href}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Analytics section */}
+      <section className="mb-3">
+        <div className="flex w-full items-center gap-2 mb-3">
+          <h3 className=" text-lg font-bold text-black">Analytics</h3>
+          <div className="h-[1px] w-full bg-[#D0D5DD]"></div>
+        </div>
+        <div className="grid grid-cols-4 gap-4">
+          <MetricCard
+            title="Total Active Cards"
+            value="26,478"
+            icon="credit-card-check"
+            iconBgColor="bg-green-100"
+            trend={{
+              value: "+9%",
+              isPositive: true,
+              label: "this month",
+            }}
+          />
+
+          <MetricCard
+            title="Total Personalized Cards"
+            value="15,703"
+            icon="personalized-cards"
+            iconBgColor="bg-purple-100"
+            trend={{
+              value: "8.5%",
+              isPositive: true,
+              label: "this month",
+            }}
+          />
+
+          <MetricCard
+            title="Today's Revenue"
+            value="₦9.3M"
+            icon="todays-rev"
+            iconBgColor="bg-blue-100"
+            trend={{
+              value: "+6%",
+              isPositive: true,
+              label: "vs yesterday",
+            }}
+          />
+
+          <MetricCard
+            title="Pending Requests"
+            value="38"
+            icon="pending-requests"
+            iconBgColor="bg-amber-100"
+            attention={true}
+          />
+        </div>
+      </section>
+
+      {/* Charts and tables section */}
+      <div className="grid grid-cols-2 gap-6">
+        <MonthlyIssuanceChart />
+        <RecentCardRequests />
+        <WeeklyIncomeChart />
+        <CardStatusDistribution />
+      </div>
+    </div>
   );
 }
