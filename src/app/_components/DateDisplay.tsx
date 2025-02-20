@@ -19,7 +19,7 @@ export function DateDisplay() {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="flex h-10 items-center gap-2 font-satoshi border border-[#D0D5DD] px-3 py-2"
+          className="flex h-10 items-center gap-2 border border-[#D0D5DD] px-3 py-2 font-satoshi"
         >
           <div className="flex items-center gap-2">
             <CalendarIcon className="h-4 w-4 text-black" />
@@ -27,7 +27,7 @@ export function DateDisplay() {
               Today
             </span>
           </div>
-        <div className="w-[0.6px] h-4 bg-[#D0D5DD]"></div>
+          <div className="h-4 w-[1px] bg-[#D0D5DD]"></div>
           <span className="font-regular text-[11px] text-[#121212]">
             {format(date, "d MMM yyyy")}
           </span>

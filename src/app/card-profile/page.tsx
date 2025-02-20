@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { CardProfilePage } from './CardProfilePage';
 
-const page = () => {
+
+const CardProfileMain = () => {
+ 
   return (
-    <div>card-profile</div>
-  )
-}
+    <section className="flex-1 overflow-auto">
+      <CardProfilePage />
+    </section>
+  );
+};
 
-export default page
+export default CardProfileMain;
