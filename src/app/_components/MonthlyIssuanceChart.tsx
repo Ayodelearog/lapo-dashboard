@@ -25,24 +25,24 @@ const data = [
 
 export function MonthlyIssuanceChart() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg font-medium">Monthly Issuance</CardTitle>
+    <Card className='shadow-none p-4 flex flex-col gap-[22px]'>
+      <CardHeader className='p-0'>
+        <CardTitle className="text-lg font-medium text-[#121212]">Monthly Issuance</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="h-64 w-full">
-          <ResponsiveContainer width="100%" height="100%">
+      <CardContent className='p-0'>
+        <div className="h-[203px] w-full">
+          <ResponsiveContainer  width="100%" height="100%">
             <BarChart
               data={data}
-              margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
+              margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
             >
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="name" tickLine={false} axisLine={false} />
+              <XAxis dataKey="name" tickLine={true} axisLine={true} />
               <YAxis tickLine={false} axisLine={false} />
               <Tooltip />
-              <Legend verticalAlign="top" height={36} />
-              <Bar dataKey="instant" fill="#E0E7FF" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="personalized" fill="#1E40AF" radius={[4, 4, 0, 0]} />
+              <Legend verticalAlign="bottom" height={16} />
+              <Bar dataKey="instant" fill="#E0E7FF" stackId={"a"} width={40} radius={[4, 4, 0, 0]} />
+              <Bar dataKey="personalized" fill="#1E40AF" width={40} stackId={"a"} radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>

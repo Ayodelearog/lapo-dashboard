@@ -9,31 +9,56 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Bell, Search, CalendarIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import path from "path";
+
+const routes = [
+  { name: "Dashboard", icon: "/home.svg", href: "/" },
+  { name: "Branches", icon: "/branches.svg", href: "/branches" },
+  { name: "Roles", icon: "/roles.svg", href: "/roles" },
+  { name: "Users", icon: "/users.svg", href: "/users" },
+  { name: "Card Scheme", icon: "/card-scheme.svg", href: "/card-scheme" },
+  { name: "Card Profile", icon: "/card-profile.svg", href: "/card-profile" },
+  { name: "Card Request", icon: "/card-request.svg", href: "/card-request" },
+  { name: "Stock", icon: "/stock.svg", href: "/stock" },
+  { name: "Cards", icon: "/cards.svg", href: "/cards" },
+  {
+    name: "Authorization List",
+    icon: "/auth-list.svg",
+    href: "/authorization-list",
+  },
+  {
+    name: "Authorization Queue",
+    icon: "/auth-queue.svg",
+    href: "/authorization-queue",
+  },
+  { name: "Trail", icon: "/trail.svg", href: "/trail" },
+];
 
 export function DashboardHeader() {
+  const pathname = usePathname();
+  const activeRoute = routes.find((route) => pathname === route.href);
   return (
     <header className="border-b border-[#DEDEDF] px-2 py-1">
       <div className="flex items-center justify-between">
-        <div
-          className={cn(
-            "font-medium flex items-center gap-3 rounded-lg px-3 py-2.5 text-[12px] text-black transition-colors",
-            // pathname === "/"
-            //   ? "border border-[#E2E2E2] bg-[#F6F6F6] text-base font-medium text-primary"
-            //   : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-          )}
-        >
-          <Image
-            src="/home.svg"
-            width={16}
-            height={16}
-            priority
-            alt="dashboard icon"
-            className="h-4 w-4" // Fixed size
-          />
-          Dashboard
-        </div>
+        {activeRoute && (
+          <div
+            key={activeRoute.href}
+            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[12px] font-medium text-black transition-colors"
+          >
+            <Image
+              src={activeRoute.icon}
+              width={16}
+              height={16}
+              priority
+              alt="dashboard icon"
+              className="h-4 w-4"
+            />
+            {activeRoute.name}
+          </div>
+        )}
 
-        <div className="flex items-center gap-4 mr-[11px]">
+        <div className="mr-[11px] flex items-center gap-4">
           {/* Search bar */}
           <div className="relative w-[214px]">
             <div className="flex h-8 items-center overflow-hidden rounded-full border border-gray-200 bg-white px-3">
@@ -41,7 +66,7 @@ export function DashboardHeader() {
               <Input
                 type="text"
                 placeholder="Search"
-                className="h-8 border-0 bg-transparent px-2 text-[12px] placeholder:text-[12px] placeholder:font-regular placeholder:text-[#344054] shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="placeholder:font-regular h-8 border-0 bg-transparent px-2 text-[12px] shadow-none placeholder:text-[12px] placeholder:text-[#344054] focus-visible:ring-0 focus-visible:ring-offset-0"
               />
             </div>
           </div>
@@ -59,7 +84,7 @@ export function DashboardHeader() {
           {/* User profile */}
           <Button
             variant="ghost"
-            className="h-9 w-9 rounded-full p-0 border border-gray-300 hover:bg-gray-100"
+            className="h-9 w-9 rounded-full border border-gray-300 p-0 hover:bg-gray-100"
           >
             <Avatar className="h-9 w-9">
               <AvatarImage src="/avatar-placeholder.jpg" alt="User" />

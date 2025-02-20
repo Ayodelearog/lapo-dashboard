@@ -37,7 +37,7 @@
     --radius: 0.5rem;
   }
 
-  .dark {
+  /* .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -65,7 +65,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 215 99% 34%;
-  }
+  } */
 }
 
 @layer base {
@@ -73,7 +73,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-satoshi;
+    @apply bg-background font-satoshi text-foreground;
   }
 }
-

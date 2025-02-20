@@ -69,12 +69,12 @@ export default function DashboardPage() {
       </section>
 
       {/* Analytics section */}
-      <section className="mb-3">
+      <section className="mb-2">
         <div className="flex w-full items-center gap-2 mb-3">
           <h3 className=" text-lg font-bold text-black">Analytics</h3>
           <div className="h-[1px] w-full bg-[#D0D5DD]"></div>
         </div>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2">
           <MetricCard
             title="Total Active Cards"
             value="26,478"
@@ -122,7 +122,7 @@ export default function DashboardPage() {
       </section>
 
       {/* Charts and tables section */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-2">
         <MonthlyIssuanceChart />
         <RecentCardRequests />
         <WeeklyIncomeChart />

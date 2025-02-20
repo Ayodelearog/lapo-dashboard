@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 import {
   Table,
   TableBody,
@@ -13,6 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { title } from 'process';
 
 const data = [
   { branch: "Corporate", type: "Instant", quantity: 10, status: "Ready" },
@@ -23,32 +25,33 @@ const data = [
 
 export function RecentCardRequests() {
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-lg font-medium">Recent Card Requests</CardTitle>
+    <Card className='shadow-none p-4 flex flex-col gap-[22px]'>
+      <CardHeader className="flex p-0 flex-row items-center justify-between">
+        <CardTitle className="text-lg font-medium text-[#121212]">Recent Card Requests</CardTitle>
         <Button variant="ghost" size="icon">
-          <ExternalLink className="h-5 w-5" />
+        <Image src={`/maximize-2.svg`} alt={title} width={20} height={20} />
+          {/* <ExternalLink className="h-5 w-5" /> */}
         </Button>
       </CardHeader>
-      <CardContent>
+      <CardContent className='w-full p-0'>
         <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="font-normal text-gray-500">Branch</TableHead>
-              <TableHead className="font-normal text-gray-500">Card Type</TableHead>
-              <TableHead className="font-normal text-gray-500">Quantity</TableHead>
-              <TableHead className="font-normal text-gray-500">Status</TableHead>
-              <TableHead className="font-normal text-gray-500">Action</TableHead>
+          <TableHeader className='bg-[#F1F7FF]'>
+            <TableRow className='text-center'>
+              <TableHead className="font-medium text-center py-2 px-7 text-[12px] text-black/50">Branch</TableHead>
+              <TableHead className="font-medium text-center py-2 px-7 text-[12px] text-black/50">Card Type</TableHead>
+              <TableHead className="font-medium text-center py-2 px-7 text-[12px] text-black/50">Quantity</TableHead>
+              <TableHead className="font-medium text-center py-2 px-7 text-[12px] text-black/50">Status</TableHead>
+              <TableHead className="font-medium text-center py-2 px-7 text-[12px] text-black/50">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {data.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell>{row.branch}</TableCell>
-                <TableCell>{row.type}</TableCell>
-                <TableCell>{row.quantity}</TableCell>
-                <TableCell>
-                  <Badge variant={
+              <TableRow key={index} className='font-regular text-center text-gray-600 text-[10px]'>
+                <TableCell className='py-3 px-10'>{row.branch}</TableCell>
+                <TableCell className='py-3 px-10'>{row.type}</TableCell>
+                <TableCell className='py-3 px-10'>{row.quantity}</TableCell>
+                <TableCell className='font-medium py-3 px-10'>
+                  <Badge size="sm" variant={
                     row.status === "Ready" ? "success" :
                     row.status === "In Progress" ? "warning" :
                     row.status === "Acknowledged" ? "info" : "outline"
@@ -56,8 +59,8 @@ export function RecentCardRequests() {
                     {row.status}
                   </Badge>
                 </TableCell>
-                <TableCell>
-                  <Button variant="link" className="p-0 h-auto">View</Button>
+                <TableCell className='py-3 px-10'>
+                  <Button variant="link" className="p-0 font-bold text-primary h-auto">View</Button>
                 </TableCell>
               </TableRow>
             ))}

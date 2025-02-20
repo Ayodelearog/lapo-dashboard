@@ -24,28 +24,28 @@ const data = [
 
 export function WeeklyIncomeChart() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg font-medium">This Week's Income</CardTitle>
+    <Card className='shadow-none p-4 flex flex-col gap-[22px]'>
+      <CardHeader className="flex p-0 flex-row items-center justify-between ">
+        <CardTitle className="text-lg font-medium text-[#121212]">This Week's Income</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="h-64 w-full">
+      <CardContent className='p-0 '>
+        <div className="h-[203px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={data}
-              margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
+              margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <CartesianGrid strokeDasharray="2 2" vertical={false} />
               <XAxis dataKey="name" tickLine={false} axisLine={false} />
               <YAxis tickLine={false} axisLine={false} />
               <Tooltip />
               <Line 
                 type="monotone" 
                 dataKey="value" 
-                stroke="#22C55E" 
-                strokeWidth={2}
-                dot={{ r: 4, strokeWidth: 2 }}
-                activeDot={{ r: 6, fill: "#22C55E" }}
+                stroke="#4DAF01" 
+                strokeWidth={1.5}
+                // dot={{ r: 4, strokeWidth: 1.5 }}
+                activeDot={{ r: 6, fill: "#4DAF01" }}
               />
             </LineChart>
           </ResponsiveContainer>
