@@ -61,7 +61,7 @@ export function DashboardHeader() {
     : "";
 
   return (
-    <header className="sticky top-0 z-50 flex  w-full border-b bg-white">
+    <header className="sticky top-0 z-50 flex w-full border-b bg-white">
       <div className="flex w-full items-center justify-between px-5 py-1">
         {/* <div className="flex items-center gap-4">
           {isSubroute ? (
@@ -108,7 +108,7 @@ export function DashboardHeader() {
         {activeRoute ? (
           <div
             key={activeRoute?.href}
-            className="flex items-center gap-3 rounded-lg  py-2.5 text-[12px] font-medium text-black transition-colors"
+            className="flex items-center gap-3 rounded-lg py-2.5 text-[12px] font-medium text-black transition-colors"
           >
             <Image
               src={activeRoute?.icon}
@@ -128,7 +128,7 @@ export function DashboardHeader() {
                   variant="ghost"
                   size="icon"
                   onClick={() => router.back()}
-                  className="w-fit h-fit hover:bg-transparent text-[12px] flex items-center gap-2 font-medium text-gray-600"
+                  className="flex h-fit w-fit items-center gap-2 text-[12px] font-medium text-gray-600 hover:bg-transparent"
                 >
                   <ChevronLeft className="h-5 w-5 text-gray-600" />
                   Back
@@ -150,7 +150,9 @@ export function DashboardHeader() {
                       {parentRoute.name}
                     </Link>
                     <ChevronRight className="h-4 w-4 text-gray-300" />
-                    <span className="font-bold text-[12px] text-[#001735]">{subRouteName}</span>
+                    <span className="text-[12px] font-bold text-[#001735]">
+                      {subRouteName}
+                    </span>
                   </div>
                 )}
               </>
@@ -174,8 +176,13 @@ export function DashboardHeader() {
           {isHomepage && (
             <div className="relative w-[214px]">
               <div className="flex h-8 items-center overflow-hidden rounded-full border border-gray-200 bg-white px-3">
-                <Image src="/search-md.svg" alt="search" width={16} height={16} />
-                {/* <Search className="h-4 w-4 text-black" /> */}
+                <Image
+                  src="/search-md.svg"
+                  alt="search"
+                  width={16}
+                  height={16}
+                />
+
                 <Input
                   type="text"
                   placeholder="Search"
@@ -186,14 +193,18 @@ export function DashboardHeader() {
           )}
 
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" className="relative rounded-full">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative rounded-full"
+            >
               <Bell className="h-5 w-5" />
-              <Badge className="absolute -right-[-3] -top-[-2] flex h-4 w-4 items-center justify-center bg-red-500 hover:bg-red-500 text-[10px] rounded-full p-0">
+              <Badge className="absolute -right-[-3] -top-[-2] flex h-4 w-4 items-center justify-center rounded-full bg-red-500 p-0 text-[10px] hover:bg-red-500">
                 3
               </Badge>
             </Button>
 
-            <Avatar className="border border-gray-300">
+            <Avatar className="h-8 w-8 border border-gray-300">
               <AvatarImage src="" alt="User" />
               <AvatarFallback>UN</AvatarFallback>
             </Avatar>

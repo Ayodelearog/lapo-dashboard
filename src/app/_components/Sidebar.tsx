@@ -42,10 +42,12 @@ const menuItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const pathParts = pathname.split("/").filter(Boolean);
+  console.log(`${pathParts[0]}`, pathname.split("/")[1]);
 
   return (
-    <div className="flex h-full w-[15vw] flex-col border-r border-[#DEDEDF] bg-background px-3 overflow-y-auto">
-      <div className="pt-6 shrink-0">
+    <div className="flex h-full w-[15vw] flex-col overflow-y-auto border-r border-[#DEDEDF] bg-background px-3">
+      <div className="shrink-0 pt-6">
         <div className="relative p-4">
           <Image
             src="/logo.png"
@@ -56,7 +58,7 @@ export function Sidebar() {
             className="h-8 w-auto" // Fixed height
           />
         </div>
-        
+
         <Link
           href="/"
           className={cn(
@@ -89,7 +91,7 @@ export function Sidebar() {
             href={item.href}
             className={cn(
               "font-regular flex items-center gap-3 rounded-lg px-3 py-2 text-[12px] text-black/50 transition-colors",
-              pathname === item.href
+              pathname.startsWith(item.href)
                 ? "border border-[#E2E2E2] bg-[#F6F6F6] text-base font-medium text-primary"
                 : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
             )}
@@ -120,7 +122,7 @@ export function Sidebar() {
           Logout
         </button>
 
-        <div className="p-4 flex flex-col items-start">
+        <div className="flex flex-col items-start p-4">
           <p className="mb-1 text-[8.5px] uppercase text-[#7E8B9C]">
             powered by
           </p>
@@ -130,7 +132,7 @@ export function Sidebar() {
             height={42}
             priority
             alt="Card Infra Logo"
-            className=" w-auto" // Fixed height
+            className="w-auto" // Fixed height
           />
         </div>
       </div>
