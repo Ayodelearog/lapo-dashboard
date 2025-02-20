@@ -1,7 +1,7 @@
 // CardProfileForm.tsx
-'use client'
-import React from 'react';
-import { 
+"use client";
+import React from "react";
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -11,58 +11,64 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
-import { 
-  Card, 
-  CardContent, 
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus } from "lucide-react";
-
-
+import { useRouter } from "next/navigation";
+import { AddFeeModal } from "./AddFeeModal";
 
 export const CardProfileForm: React.FC = () => {
+  const router = useRouter();
   const [fees, setFees] = React.useState<any[]>([]);
-  
+
   return (
-    <div className="p-6 w-full">
+    <div className="w-full">
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold">Create Profile</h1>
-        <p className="text-gray-500">Fill in profile details and add card fee.</p>
+        <h1 className="text-[18px] font-bold text-gray-900">Card Profile</h1>
+        <p className="font-regular text-[14px] text-gray-600">
+          Fill in profile details and add card fee.
+        </p>
       </div>
 
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle className="text-lg">Profile Details</CardTitle>
+      <Card className="rounded-2.5 mb-4 p-4 pb-7 shadow-none">
+        <CardHeader className="p-0">
+          <CardTitle className="text-lg font-medium text-[#121212]">
+            Profile Details
+          </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 gap-6">
+        <CardContent className="mt-[26px] p-0">
+          <div className="grid grid-cols-2 gap-x-[125px] gap-y-5 pr-[133px]">
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">
                 Card Name<span className="text-red-500">*</span>
               </label>
-              <Input placeholder="Enter card name" />
+              <Input
+                placeholder="Enter card name"
+                className="border border-gray-300 px-[14px] py-2.5"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">
                 Bin Prefix<span className="text-red-500">*</span>
               </label>
-              <Input placeholder="00000000" />
+              <Input
+                placeholder="00000000"
+                className="border border-gray-300 px-[14px] py-2.5"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">
                 Card Scheme<span className="text-red-500">*</span>
               </label>
               <Select>
-                <SelectTrigger>
+                <SelectTrigger className="border border-gray-300 px-[14px] py-2.5">
                   <SelectValue placeholder="Verve" />
                 </SelectTrigger>
                 <SelectContent>
@@ -73,11 +79,16 @@ export const CardProfileForm: React.FC = () => {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">
                 Expiration<span className="text-red-500">*</span>
               </label>
-              <Select>
-                <SelectTrigger>
+              <Input
+                placeholder="00000000"
+                type="number"
+                className="border border-gray-300 px-[14px] py-2.5"
+              />
+              {/* <Select>
+                <SelectTrigger className="border border-gray-300 px-[14px] py-2.5">
                   <SelectValue placeholder="0" />
                 </SelectTrigger>
                 <SelectContent>
@@ -86,20 +97,23 @@ export const CardProfileForm: React.FC = () => {
                   <SelectItem value="36">36 months</SelectItem>
                   <SelectItem value="40">40 months</SelectItem>
                 </SelectContent>
-              </Select>
+              </Select> */}
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">
                 Description
               </label>
-              <Textarea placeholder="Enter description" />
+              <Textarea
+                placeholder="Enter description"
+                className="border border-gray-300 px-[14px] py-2.5"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">
                 Currency<span className="text-red-500">*</span>
               </label>
               <Select>
-                <SelectTrigger>
+                <SelectTrigger className="border border-gray-300 px-[14px] py-2.5">
                   <SelectValue placeholder="NGN" />
                 </SelectTrigger>
                 <SelectContent>
@@ -111,11 +125,11 @@ export const CardProfileForm: React.FC = () => {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="mb-1.5 block text-sm font-medium text-gray-700">
                 Branch Blacklist
               </label>
               <Select>
-                <SelectTrigger>
+                <SelectTrigger className="border border-gray-300 px-[14px] py-2.5">
                   <SelectValue placeholder="Head Office" />
                 </SelectTrigger>
                 <SelectContent>
@@ -129,30 +143,52 @@ export const CardProfileForm: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle className="text-lg">Fees</CardTitle>
-          <Button className="bg-blue-600 hover:bg-blue-700">
-            <Plus className="mr-2 h-4 w-4" /> Add Fee
-          </Button>
+      <Card className="rounded-2.5 mb-4 p-4 shadow-none">
+        <CardHeader className="mb-3 flex flex-col gap-6 p-0">
+          <CardTitle className="text-lg font-medium text-[#121212]">
+            Fees
+          </CardTitle>
+          {/* <Button
+            onClick={() => router.push("/card-profile/create-profile")}
+            className="flex w-fit items-center gap-2 bg-primary px-3.5 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" /> Add Fee
+          </Button> */}
+          <AddFeeModal />
         </CardHeader>
-        <CardContent>
+
+        <CardContent className="p-0">
           <Table>
-            <TableHeader>
+            <TableHeader className="bg-gray-50 text-[12px] font-medium text-gray-600">
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Value</TableHead>
-                <TableHead>Frequency</TableHead>
-                <TableHead>Currency</TableHead>
-                <TableHead>Time</TableHead>
-                <TableHead>Account Pad</TableHead>
-                <TableHead>Account</TableHead>
+                <TableHead className="px-6 py-3 text-center">Name</TableHead>
+                <TableHead className="border-l border-gray-200 px-6 py-3 text-center">
+                  Value
+                </TableHead>
+                <TableHead className="border-l border-gray-200 px-6 py-3 text-center">
+                  Frequency
+                </TableHead>
+                <TableHead className="border-l border-gray-200 px-6 py-3 text-center">
+                  Currency
+                </TableHead>
+                <TableHead className="border-l border-gray-200 px-6 py-3 text-center">
+                  Time
+                </TableHead>
+                <TableHead className="border-l border-gray-200 px-6 py-3 text-center">
+                  Account Pad
+                </TableHead>
+                <TableHead className="border-l border-gray-200 px-6 py-3 text-center">
+                  Account
+                </TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="bg-white">
               {fees.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={7} className="text-center py-6 text-gray-500">
+                  <TableCell
+                    colSpan={7}
+                    className="py-6 text-center text-gray-500"
+                  >
                     No fees added yet
                   </TableCell>
                 </TableRow>
@@ -163,7 +199,10 @@ export const CardProfileForm: React.FC = () => {
       </Card>
 
       <div className="mt-8">
-        <Button className="bg-blue-600 hover:bg-blue-700 w-full md:w-auto">
+        <Button
+          onClick={() => router.push("/card-profile/create-profile")}
+          className="flex w-fit items-center gap-2 bg-primary px-[95px] py-2.5 text-base font-bold text-white hover:bg-blue-700"
+        >
           Create Profile
         </Button>
       </div>
