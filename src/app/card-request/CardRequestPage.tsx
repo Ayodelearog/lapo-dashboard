@@ -14,14 +14,7 @@ import {
 import {
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
-  // CardDescription,
-  // CardHeader,
-  // CardTitle,
 } from "@/components/ui/card";
-import { Plus } from "lucide-react";
-import { AddFeeModal } from "../_components/AddFeeModal";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
@@ -72,7 +65,6 @@ const data = [
 
 export const CardRequestPage: React.FC = () => {
   const router = useRouter();
-  const [isAddFeeModalOpen] = React.useState(false);
 
   return (
     <div className="w-full">

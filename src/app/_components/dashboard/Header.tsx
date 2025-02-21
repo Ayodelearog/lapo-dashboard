@@ -206,7 +206,7 @@ export function DashboardHeader() {
             </Button>
 
             <Avatar className="h-8 w-8 border border-gray-300">
-              <AvatarImage src="" alt="User" />
+              <AvatarImage src="/avatar-man.jpg" alt="User" />
               <AvatarFallback>UN</AvatarFallback>
             </Avatar>
           </div>

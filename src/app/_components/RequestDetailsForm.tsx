@@ -1,31 +1,27 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
 
+interface actionBtnData {
+    icon: string;
+      text: string;
+      bgColor: string;
+      description: string;
+      action: () => void;
+}
+
 export const RequestDetailsForm: React.FC = () => {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     branch: "Corporate",
     initiator: "RootUser",
@@ -41,7 +37,7 @@ export const RequestDetailsForm: React.FC = () => {
   const [modalData, setModalData] = useState({
     title: "",
     description: "",
-    action: () => {},
+    action: () => { return; },
     bgColor: "",
   });
 
@@ -84,7 +80,7 @@ export const RequestDetailsForm: React.FC = () => {
     },
   ];
 
-  const handleActionClick = (button: any) => {
+  const handleActionClick = (button: actionBtnData) => {
     setModalData({
       title: button.text,
       description: button.description,

@@ -4,10 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-// import { Icon } from "./Icon";
 
 const menuItems = [
-  // { name: "Dashboard", icon: "/home.svg", href: "/" },
   { name: "Branches", icon: "/branches.svg", href: "/branches" },
   { name: "Roles", icon: "/roles.svg", href: "/roles" },
   { name: "Users", icon: "/users.svg", href: "/users" },
@@ -31,8 +29,46 @@ const menuItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const pathParts = pathname.split("/").filter(Boolean);
-  console.log(`${pathParts[0]}`, pathname.split("/")[1]);
+
+  // Reusable function to determine if a route is active
+  const isRouteActive = (href: string) => {
+    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  };
+
+  // Reusable function for rendering menu items
+  const renderMenuItem = (name: string, icon: string, href: string) => {
+    const isActive = isRouteActive(href);
+    
+    return (
+      <Link
+        key={href}
+        href={href}
+        className={cn(
+          "font-regular flex items-center gap-3 rounded-lg px-3 py-2 text-[12px] transition-colors",
+          isActive
+            ? "border border-[#E2E2E2] bg-[#F6F6F6] text-base font-medium text-primary"
+            : "text-black/50 hover:bg-accent hover:text-accent-foreground"
+        )}
+      >
+        <Image
+          src={icon}
+          width={16}
+          height={16}
+          priority
+          alt={`${name} icon`}
+          className="h-4 w-4"
+          style={
+            isActive
+              ? {
+                  filter: "invert(22%) sepia(98%) saturate(1841%) hue-rotate(210deg) brightness(94%) contrast(102%)"
+                }
+              : {}
+          }
+        />
+        {name}
+      </Link>
+    );
+  };
 
   return (
     <div className="flex h-full w-[15vw] flex-col overflow-y-auto border-r border-[#DEDEDF] bg-background px-3">
@@ -44,29 +80,11 @@ export function Sidebar() {
             height={45}
             priority
             alt="LAPO Logo"
-            className="h-8 w-auto" // Fixed height
+            className="h-8 w-auto"
           />
         </div>
 
-        <Link
-          href="/"
-          className={cn(
-            "font-regular mt-[32px] flex items-center gap-3 rounded-lg px-3 py-2.5 text-[12px] text-black/50 transition-colors",
-            pathname === "/"
-              ? "border border-[#E2E2E2] bg-[#F6F6F6] text-base font-medium text-primary"
-              : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-          )}
-        >
-          <Image
-            src="/home.svg"
-            width={16}
-            height={16}
-            priority
-            alt="dashboard icon"
-            className="h-4 w-4" // Fixed size
-          />
-          Dashboard
-        </Link>
+        {renderMenuItem("Dashboard", "/home.svg", "/")}
 
         <p className="mb-0.5 mt-4 pl-4 text-[8.5px] uppercase text-[#7E8B9C]">
           Main Menu
@@ -74,28 +92,7 @@ export function Sidebar() {
       </div>
 
       <nav className="flex-1 overflow-y-auto px-2 py-2">
-        {menuItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={cn(
-              "font-regular flex items-center gap-3 rounded-lg px-3 py-2 text-[12px] text-black/50 transition-colors",
-              pathname.startsWith(item.href)
-                ? "border border-[#E2E2E2] bg-[#F6F6F6] text-base font-medium text-primary"
-                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-            )}
-          >
-            <Image
-              src={item.icon}
-              width={16}
-              height={16}
-              priority
-              alt={`${item.name} icon`}
-              className="h-4 w-4" // Fixed size
-            />
-            {item.name}
-          </Link>
-        ))}
+        {menuItems.map((item) => renderMenuItem(item.name, item.icon, item.href))}
       </nav>
 
       <div className="mt-auto shrink-0 pb-4">
@@ -106,7 +103,7 @@ export function Sidebar() {
             height={16}
             priority
             alt="logout icon"
-            className="h-4 w-4" // Fixed size
+            className="h-4 w-4"
           />
           Logout
         </button>
@@ -121,7 +118,7 @@ export function Sidebar() {
             height={42}
             priority
             alt="Card Infra Logo"
-            className="w-auto" // Fixed height
+            className="w-auto"
           />
         </div>
       </div>
