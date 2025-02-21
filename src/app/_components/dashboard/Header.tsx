@@ -200,9 +200,9 @@ export function DashboardHeader() {
             >
               <Image src="/bell-01.svg" alt="bell" width={20} height={20} />
 
-              <Badge className="absolute -right-[-3] -top-[-2] flex h-4 w-4 items-center justify-center rounded-full bg-red-500 p-0 text-[10px] hover:bg-red-500">
+              {/* <Badge className="absolute -right-[-3] -top-[-2] flex h-4 w-4 items-center justify-center rounded-full bg-red-500 p-0 text-[10px] hover:bg-red-500">
                 3
-              </Badge>
+              </Badge> */}
             </Button>
 
             <Avatar className="h-8 w-8 border border-gray-300">
